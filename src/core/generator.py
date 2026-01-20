@@ -1,6 +1,8 @@
 import json
 import os
-from typing import List, Dict
+import sys
+from typing import List
+
 from pydantic import BaseModel, ValidationError
 
 
@@ -23,20 +25,26 @@ class TranspilerEngine:
     """
 
     def __init__(self):
-        self.base_path = os.path.dirname(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        self.styles: Dict[str, StyleConfig] = {}
-        self.quality_pos: str = ""
-        self.quality_neg: str = ""
+        if getattr(sys, 'frozen', False):
+            self.base_path = sys._MEIPASS
+        else:
+            self.base_path = os.path.dirname(
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+        self.styles = {}
+        self.quality_pos = ""
+        self.quality_neg = ""
         self._load_data()
 
     def _load_data(self) -> None:
         """Loads JSON configurations with strict Pydantic validation."""
-        styles_path = os.path.join(self.base_path, 'src', 'data',
-                                   'styles.json')
-        quality_path = os.path.join(self.base_path, 'src', 'data',
-                                    'quality_tags.json')
+        if getattr(sys, 'frozen', False):
+            data_dir = os.path.join(self.base_path, 'data')
+        else:
+            data_dir = os.path.join(self.base_path, 'src', 'data')
+
+        styles_path = os.path.join(data_dir, 'styles.json')
+        quality_path = os.path.join(data_dir, 'quality_tags.json')
 
         try:
             # 1. Load Styles

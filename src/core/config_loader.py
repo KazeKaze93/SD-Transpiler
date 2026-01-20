@@ -2,7 +2,7 @@ from PyQt5.QtCore import QSettings
 
 class ConfigManager:
     def __init__(self):
-        self.settings = QSettings("KazeProjects", "SD-Transpiler")
+        self.settings = QSettings("SD-Transpiler")
 
     def get_api_key(self) -> str:
         return self.settings.value("gemini_api_key", "")

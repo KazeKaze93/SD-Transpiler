@@ -2,4 +2,5 @@ __pycache__/
 *.spec
 build/
 dist/
-secrets.json
+!/build/
+!/dist/
