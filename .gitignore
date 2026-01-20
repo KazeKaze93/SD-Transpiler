@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.spec
+build/
+dist/
+secrets.json

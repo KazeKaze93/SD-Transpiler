@@ -1,0 +1,16 @@
+{
+  "styles": {
+    "Photorealism": {
+      "name": "Photorealism",
+      "prompt_payload": "professional photography, 8k uhd, dslr, soft lighting, detailed skin texture, sharp focus",
+      "negative_payload": "anime, cartoon, graphic, (worst quality, low quality:1.4), deformed, blurry",
+      "loras": []
+    },
+    "Anime": {
+      "name": "Anime",
+      "prompt_payload": "anime style, vibrant colors, cel shaded, high resolution, detailed eyes, masterpiece",
+      "negative_payload": "photorealistic, real life, 3d, (worst quality, low quality:1.4), text, signature",
+      "loras": []
+    }
+  }
+}

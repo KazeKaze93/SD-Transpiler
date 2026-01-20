@@ -1,0 +1,6 @@
+PyQt5
+qt-material
+google-genai
+pydantic
+pyperclip
+python-dotenv
