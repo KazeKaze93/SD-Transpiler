@@ -1,17 +1,17 @@
-from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-                             QTextEdit, QPushButton, QComboBox, QCheckBox,
-                             QLabel, QFrame, QListView, QInputDialog,
-                             QLineEdit)
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QIcon, QPixmap
-import pyperclip
 import base64
 
-from src.core.generator import engine
+import pyperclip
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+                             QTextEdit, QPushButton, QComboBox, QCheckBox,
+                             QLabel, QListView, QInputDialog,
+                             QLineEdit)
+
 from src.core.config_loader import config_manager
+from src.core.generator import engine
 from src.core.llm_worker import GeminiWorker
 
-# Вшитые SVG иконки
 ICON_COPY = "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzYjgyZjYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB4PSI5IiB5PSI5IiB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIHJ4PSIyIiByeT0iMiI+PC9yZWN0PjxwYXRoIGQ9Ik01IDE1SDNhMiAyIDAgMCAxLTItMlY1YTIgMiAwIDAgMSAyLTJoMTBhMiAyIDAgMCAxIDIgMiAyIDIiPjwvcGF0aD48L3N2Zz4="
 ICON_CHECK = "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyMmNiNWUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSIyMCA2IDkgMTcgNCAxMiI+PC9wb2x5bGluZT48L3N2Zz4="
 
@@ -21,7 +21,7 @@ class TranspilerUI(QMainWindow):
         super().__init__()
         self.setWindowTitle("SD-Transpiler v1.0")
         self.setMinimumSize(600, 750)
-        self.copy_btns = []  # Для управления анимацией галочек
+        self.copy_btns = []
         self._ensure_api_key()
         self._init_ui()
 
@@ -31,7 +31,6 @@ class TranspilerUI(QMainWindow):
         return QIcon(pixmap)
 
     def _ensure_api_key(self):
-        """Всплывающее окно вместо поля в UI"""
         key = config_manager.get_api_key()
         if not key or not key.strip():
             new_key, ok = QInputDialog.getText(self, "API Key Required",
@@ -50,7 +49,7 @@ class TranspilerUI(QMainWindow):
         # 1. Styles & NSFW
         top_row = QHBoxLayout()
         self.style_selector = QComboBox()
-        self.style_selector.setView(QListView())  # Твой фикс для дропдауна
+        self.style_selector.setView(QListView())
         self.style_selector.addItems(engine.get_style_names())
         self.style_selector.currentIndexChanged.connect(self.reset_icons)
 
@@ -118,15 +117,13 @@ class TranspilerUI(QMainWindow):
             pyperclip.copy(text)
             self.reset_icons()
             btn.setIcon(
-                self._get_icon(ICON_CHECK))  # Анимация: превращаем в галочку
+                self._get_icon(ICON_CHECK))
 
     def reset_icons(self):
-        """Сброс всех иконок к исходному состоянию"""
         for btn in self.copy_btns:
             btn.setIcon(self._get_icon(ICON_COPY))
 
     def mousePressEvent(self, event):
-        """Сброс иконок при клике в любое место окна"""
         self.reset_icons()
         super().mousePressEvent(event)
 

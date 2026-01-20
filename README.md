@@ -10,6 +10,14 @@
 * **Zero-config UI**: Ключ API запрашивается один раз и хранится в твоем `.env`.
 
 ## 🛠 Установка
-1. Клонируй этот цирк:
+
+1. Клонируй:
    ```bash
    git clone [https://github.com/YourUser/SD-Transpiler.git](https://github.com/YourUser/SD-Transpiler.git)
+2. Создай виртуальное окружение и накати зависимости:
+
+```bash
+
+python -m venv .venv
+source .venv/bin/activate # или .venv\Scripts\activate
+pip install -r requirements.txt

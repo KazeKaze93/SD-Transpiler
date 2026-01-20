@@ -1,8 +1,6 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 from google import genai
-from google.genai import types
 
-# Твой список приоритетов на 2026 год
 MODEL_PRIORITIES = [
     "gemini-3-flash-preview",
     "gemini-2.0-flash",
@@ -23,7 +21,6 @@ class GeminiWorker(QThread):
     def run(self):
         try:
             client = genai.Client(api_key=self.api_key)
-            # Максимально сухой системный промпт
             instruction = (
                 f"Act as a Stable Diffusion prompt engineer. Style: {self.style}. "
                 f"Convert input to English tags. Output ONLY tags, comma-separated. "

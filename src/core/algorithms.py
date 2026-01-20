@@ -1,7 +1,8 @@
 import json
 import os
+
 from google import genai
-from google.genai import types
+
 from .models import StyleConfig, GenerationResult
 
 MODEL_PRIORITIES = [
@@ -27,7 +28,6 @@ class TranspilerLogic:
             return json.load(f)
 
     def generate_sync(self, api_key, user_input, style_name, nsfw):
-        # Если есть ключ — идем в нейронку (синхронно для простоты в PyQt)
         processed_text = user_input
         if api_key:
             processed_text = self._call_gemini(api_key, user_input, style_name)
