@@ -1,28 +1,15 @@
-import os
-from typing import Optional
-
-from dotenv import load_dotenv, set_key
-
+from PyQt5.QtCore import QSettings
 
 class ConfigManager:
     def __init__(self):
-        self.base_path = os.path.dirname(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        self.env_path = os.path.join(self.base_path, '.env')
-        load_dotenv(self.env_path)
+        self.settings = QSettings("KazeProjects", "SD-Transpiler")
 
-    def get_api_key(self) -> Optional[str]:
-        """Loads API Key from .env"""
-        return os.getenv("GEMINI_API_KEY")
+    def get_api_key(self) -> str:
+        return self.settings.value("gemini_api_key", "")
 
     def save_api_key(self, key: str):
-        """Saves API Key to .env"""
-        if not os.path.exists(self.env_path):
-            with open(self.env_path, 'w') as f:
-                f.write("")
-
-        set_key(self.env_path, "GEMINI_API_KEY", key.strip())
-        load_dotenv(self.env_path, override=True)
+        self.settings.setValue("gemini_api_key", key.strip())
 
 
+# Singleton
 config_manager = ConfigManager()

@@ -16,8 +16,26 @@
    git clone [https://github.com/YourUser/SD-Transpiler.git](https://github.com/YourUser/SD-Transpiler.git)
 2. Создай виртуальное окружение и накати зависимости:
 
-```bash
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate # или .venv\Scripts\activate
+    pip install -r requirements.txt
 
-python -m venv .venv
-source .venv/bin/activate # или .venv\Scripts\activate
-pip install -r requirements.txt
+## ⚙️ Настройка
+
+При первом запуске программа спросит Gemini API Key. Он сохранится в файл .env
+в корне проекта. Если ключа нет, транспайлер будет работать в режиме простого
+объединения текста и стиля без участия нейронки.
+
+## 📦 Сборка в EXE
+
+### Команда для терминала:
+
+Тебе нужно упаковать папку `data`, иначе движок не найдет JSON-конфиги и
+упадет.
+
+```powershell
+pyinstaller --noconsole --onefile --name "SD-Transpiler" `
+--add-data "src/data;src/data" `
+--hidden-import PyQt5.sip `
+src/main.py
