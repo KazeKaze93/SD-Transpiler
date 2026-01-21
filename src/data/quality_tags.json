@@ -1,4 +1,30 @@
 {
-  "positive": "masterpiece, best quality, absurdres, very aesthetic, detailed, high resolution",
-  "negative": "worst quality, low quality, normal quality, lowres, jpeg artifacts, signature, watermark, username, blurry, artist name, bad anatomy, bad hands"
+  "presets": {
+    "standard": {
+      "default": {
+        "positive": "masterpiece, best quality, high resolution, 8k uhd, sharp focus, detailed texture",
+        "negative": "low quality, worst quality, normal quality, lowres, jpeg artifacts, signature, watermark, username, blurry, artist name, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped"
+      },
+      "creative": {
+        "positive": "aesthetic, expressive, dynamic composition, cinematic lighting, volumetric atmosphere, 4k",
+        "negative": "boring, flat, dull, washed out, low quality, watermark"
+      }
+    },
+    "pony": {
+      "default": {
+        "positive": "score_9, score_8_up, score_7_up, source_anime, rating_safe",
+        "negative": "score_4, score_3, score_2, score_1, source_pony, source_furry, text, signature, watermark, 3d, artist name, ugly, bad anatomy, bad hands, amputation, missing limbs"
+      },
+      "explicit": {
+        "positive": "score_9, score_8_up, rating_explicit, uncensored",
+        "negative": "score_4, score_3, score_2, mosaic_censoring, bar_censor, censorship"
+      }
+    },
+    "flux": {
+      "default": {
+        "positive": "",
+        "negative": "blur, distortion, low quality"
+      }
+    }
+  }
 }

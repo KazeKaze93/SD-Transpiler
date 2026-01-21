@@ -1,6 +1,5 @@
-PyQt5
-qt-material
+PyQt6
 google-genai
 pydantic
 pyperclip
-python-dotenv
+pywin32

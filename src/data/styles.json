@@ -1,16 +1,81 @@
 {
   "styles": {
-    "Photorealism": {
-      "name": "Photorealism",
-      "prompt_payload": "professional photography, 8k uhd, dslr, soft lighting, detailed skin texture, sharp focus",
-      "negative_payload": "anime, cartoon, graphic, (worst quality, low quality:1.4), deformed, blurry",
-      "loras": []
+    "Photorealism (SDXL)": {
+      "name": "Photorealism (SDXL)",
+      "base_model": "standard",
+      "quality_mode": "default",
+      "prompt_payload": "professional photography, (dslr:1.2), soft lighting, detailed skin texture, sharp focus, cinematic composition, depth of field, ray tracing, 50mm lens",
+      "negative_payload": "anime, cartoon, graphic, (worst quality, low quality:1.4), deformed, blurry, illustration, painting, drawing, overexposed",
+      "loras": [
+        {
+          "name": "detail_slider_v4",
+          "weight": 0.5
+        }
+      ],
+      "settings": {
+        "steps": 30,
+        "cfg": 7.0
+      }
     },
-    "Anime": {
-      "name": "Anime",
-      "prompt_payload": "anime style, vibrant colors, cel shaded, high resolution, detailed eyes, masterpiece",
-      "negative_payload": "photorealistic, real life, 3d, (worst quality, low quality:1.4), text, signature",
-      "loras": []
+    "Anime (SDXL)": {
+      "name": "Anime (SDXL)",
+      "base_model": "standard",
+      "quality_mode": "creative",
+      "prompt_payload": "anime artwork, vibrant colors, (cel shaded:1.1), high resolution, detailed eyes, masterpiece, clean lineart",
+      "negative_payload": "photorealistic, real life, 3d, (worst quality, low quality:1.4), text, signature, realistic texture, sketch",
+      "loras": [],
+      "settings": {
+        "steps": 28,
+        "cfg": 7.0
+      }
+    },
+    "Pony Realism v2.2": {
+      "name": "Pony Realism v2.2",
+      "base_model": "pony",
+      "quality_mode": "default",
+      "prompt_payload": "source_photorealistic, realistic, photo, photorealistic, 8k, highly detailed, volumetric lighting, dslr",
+      "negative_payload": "anime, cartoon, sketch, painting, source_anime, source_furry, 3d, render, illustration",
+      "loras": [],
+      "settings": {
+        "steps": 25,
+        "cfg": 5.0
+      }
+    },
+    "Pony Anime V6": {
+      "name": "Pony Anime V6",
+      "base_model": "pony",
+      "quality_mode": "default",
+      "prompt_payload": "source_anime, anime style, key visual, vibrant, high contrast, detailed background, (expressive eyes:1.1)",
+      "negative_payload": "3d, realistic, photo, source_photorealistic, source_furry, western art, sketch",
+      "loras": [],
+      "settings": {
+        "steps": 25,
+        "cfg": 6.0
+      }
+    },
+    "Quantum Surrealism (Experimental)": {
+      "name": "Quantum Surrealism",
+      "base_model": "standard",
+      "quality_mode": "creative",
+      "prompt_payload": "quantum entanglement visuals, surreal dreamscape, particle effects, multiverse glitches, abstract forms, (fluid geometry:1.2), vibrant energy",
+      "negative_payload": "realistic proportions, gravity-bound, mundane, boring, photo, text",
+      "loras": [],
+      "settings": {
+        "steps": 40,
+        "cfg": 8.0
+      }
+    },
+    "Dark Fantasy (Pony)": {
+      "name": "Dark Fantasy (Pony)",
+      "base_model": "pony",
+      "quality_mode": "default",
+      "prompt_payload": "source_anime, dark fantasy, gothic, grimdark, horror theme, dramatic lighting, detailed armor, (oil painting style:0.8)",
+      "negative_payload": "happy, bright, colorful, kawaii, chibi, source_pony, source_furry, photo, modern",
+      "loras": [],
+      "settings": {
+        "steps": 30,
+        "cfg": 7.0
+      }
     }
   }
 }
